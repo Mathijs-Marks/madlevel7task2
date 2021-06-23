@@ -20,9 +20,11 @@
     </string>
     <string name="btn_start_quest">Start quest</string>
     <string name="btn_confirm">Confirm</string>
-    <string name="question_progress_count">%s/10</string>
+    <string name="question_progress_count">%d/%d</string>
     <string name="question_placeholder">Question</string>
     <string name="answer1_placeholder">Answer 1</string>
     <string name="answer2_placeholder">Answer 2</string>
     <string name="answer3_placeholder">Answer 3</string>
+    <string name="wrong_answer">Wrong answer, try again!</string>
+    <string name="quest_complete">Congratulations, you have completed the Locations Quest!</string>
 </resources>

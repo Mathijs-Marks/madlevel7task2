@@ -46,6 +46,8 @@ class QuestionRepository {
                         }
                     }
                     .await()
+
+                _questions.value = questions
             }
         } catch (e: Exception) {
             throw QuestionRetrievalError("Retrieval-firebase-task was unsuccessful")
