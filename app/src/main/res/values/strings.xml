@@ -7,6 +7,18 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="home_screen_title">Welcome to the HvA Locations Quest!</string>
+    <string name="home_screen_description">
+        After pressing start you will start the quest.
+        After each question a picture of a HvA building is shown.
+        Go to the building and start the next question.
+        At the end there will be a prize waiting for you!
+    </string>
+    <string name="btn_start_quest">Start quest</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="question_progress_count">%s/10</string>
+    <string name="question_placeholder">Question</string>
+    <string name="answer1_placeholder">Answer 1</string>
+    <string name="answer2_placeholder">Answer 2</string>
+    <string name="answer3_placeholder">Answer 3</string>
 </resources>
