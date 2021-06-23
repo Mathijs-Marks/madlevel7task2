@@ -10,6 +10,8 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.madlevel7task2.R
 import com.example.madlevel7task2.databinding.ActivityMainBinding
+import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        FirebaseFirestore.setLoggingEnabled(true)
+        FirebaseApp.initializeApp(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
