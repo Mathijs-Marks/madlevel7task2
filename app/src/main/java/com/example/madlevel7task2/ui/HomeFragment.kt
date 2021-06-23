@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.madlevel7task2.R
 import com.example.madlevel7task2.databinding.FragmentHomeBinding
 
 /**
@@ -22,14 +24,18 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val navController = findNavController()
+
+        binding.btnQuestStart.setOnClickListener {
+            navController.navigate(R.id.action_homeFragment_to_questionFragment)
+        }
     }
 
     override fun onDestroyView() {

@@ -14,6 +14,10 @@
         Go to the building and start the next question.
         At the end there will be a prize waiting for you!
     </string>
+    <string name="hva_image_content_description">
+        This an image which depicts a building of the
+        Hogeschool van Amsterdam
+    </string>
     <string name="btn_start_quest">Start quest</string>
     <string name="btn_confirm">Confirm</string>
     <string name="question_progress_count">%s/10</string>
