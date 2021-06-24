@@ -9,15 +9,28 @@ import kotlinx.coroutines.withTimeout
 
 class QuestionRepository {
 
+    // Retrieve an instance of Firestore.
     private var firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+    // Specify the collection used from Firestore.
     private var questionDocument =
         firestore.collection("questions")
 
     private val _questions: MutableLiveData<List<Question>> = MutableLiveData()
 
+    /**
+     * Expose non MutableLiveData via getter
+     * Encapsulation :)
+     */
     val questions: LiveData<List<Question>>
         get() = _questions
 
+    /**
+     * This function is responsible for retrieving the list of questions from Firebase.
+     * A get request is executed, when this is successful, a for loop is used to go through the
+     * collection and retrieve the necessary values.
+     * These values are then converted to a Question object.
+     * After completion, the MutableLiveData list of questions is updated with the new values.
+     */
     suspend fun getQuestion() {
         try {
             // Firestore has support for coroutines via the extra dependency we've added :)

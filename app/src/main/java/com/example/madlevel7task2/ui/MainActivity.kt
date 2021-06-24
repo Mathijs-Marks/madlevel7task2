@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        // Initialize Firebase in this application.
         FirebaseFirestore.setLoggingEnabled(true)
         FirebaseApp.initializeApp(this)
     }

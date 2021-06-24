@@ -10,7 +10,8 @@ import com.example.madlevel7task2.R
 import com.example.madlevel7task2.databinding.FragmentHomeBinding
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * This [Fragment] subclass serves as the Home page for the application.
+ * The user can click the Quest Start button to start the Location Quest.
  */
 class HomeFragment : Fragment() {
 
@@ -24,6 +25,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }

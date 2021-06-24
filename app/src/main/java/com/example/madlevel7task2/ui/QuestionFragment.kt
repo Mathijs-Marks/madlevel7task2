@@ -27,9 +27,12 @@ class QuestionFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    // A list of questions is used to populate the fields in this layout.
     private lateinit var questions: List<Question>
+    // A counter is used to track the progress of the Location Quest.
     private var questionCount = 0
 
+    // Use the ViewModel to retrieve the list of questions.
     private val viewModel: QuestionViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -43,8 +46,10 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Observe the ViewModel for changes.
         observeQuestions()
 
+        // Execute confirmAnswer() on clicking the Confirm button.
         binding.btnConfirm.setOnClickListener { confirmAnswer() }
     }
 
@@ -53,6 +58,11 @@ class QuestionFragment : Fragment() {
         _binding = null
     }
 
+    /**
+     * Tell the ViewModel to retrieve the list of questions from Firebase.
+     * Then, execute the loadQuestions() function, passing the retrieved list of questions and the
+     * current question position.
+     */
     private fun observeQuestions() {
         viewModel.getQuestion()
         viewModel.questions.observe(viewLifecycleOwner, {
@@ -61,6 +71,10 @@ class QuestionFragment : Fragment() {
         })
     }
 
+    /**
+     * This function takes the current question to be answered from the list and populates the fields
+     * in the Fragment layout. The current question progress is also displayed on the top-right of the screen.
+     */
     private fun loadQuestions(question: Question) {
         binding.tvQuestionDescription.text = question.question
         binding.rbAnswer1.text = question.answer1
@@ -70,17 +84,24 @@ class QuestionFragment : Fragment() {
         binding.tvQuestionProgressCount.text = getString(R.string.question_progress_count, questionCount + 1, questions.size)
     }
 
+    /**
+     * This function checks if the selected answer corresponds to the correct answer in Firestore.
+     * If the answer is correct, questionCount is incremented by 1 to allow for the next question to load.
+     * Then, a check is done to verify whether the user has answered the last question. If so,
+     * The user will be directed back to the Home screen and will have finished the Location Quest.
+     * If the user submits a wrong answer, a Toast message will be served and the user will have to try again.
+     */
     private fun confirmAnswer() {
         /*
         Because you can't easily check whether a radio button is selected or not, you have to
         manually search the radio group if there is any radio button checked. If so, you can
         retrieve  the Id of that radio button. Then, using that Id, you can search the corresponding
-        radio button and put the result (checked radio button) in a variable.
+        radio button and put the result (the checked radio button) in a variable.
         */
         val selectedAnswerId = binding.rgAnswers.checkedRadioButtonId
         val selectedAnswer = view?.findViewById<RadioButton>(selectedAnswerId)
 
-        if (selectedAnswer?.text == questions[questionCount].correctAnswer && questionCount < questions.size) {
+        if (selectedAnswer?.text == questions[questionCount].correctAnswer) {
             questionCount++
             if (questionCount >= questions.size) {
                 findNavController().popBackStack()
@@ -91,6 +112,7 @@ class QuestionFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), R.string.wrong_answer, Toast.LENGTH_LONG).show()
         }
+        // Clear any checked radio buttons.
         binding.rgAnswers.clearCheck()
     }
 }
